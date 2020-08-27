@@ -8,15 +8,19 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
 print("e")
 numpypi=np.pi
 print(numpypi)
-f = pd.read_csv("./data/census_data_2015.csv")
-f['Men']=f['Men']/f['TotalPop']
-#print(f.head(5))
+f = pd.read_csv("./data/editedcsv.csv")
+f['CensusId']=f['CensusId'].apply(lambda x: '{0:0>5}'.format(x))
+
+# f['Men']=f['Men']/f['TotalPop']
+# print(f.head(5))
 
 fig = px.choropleth(f, geojson=counties, locations='CensusId', color='Men',
                            color_continuous_scale="Viridis",
                            #range_color=(0, 12),
                            scope="usa",
-                           labels={'unemp':'unemployment rate'}
+                           labels={'County':'Men'},
+                           hover_name="County",
+                           hover_data=["State","CensusId","Men"]
                           )
 #fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
