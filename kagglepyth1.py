@@ -10,17 +10,17 @@ numpypi=np.pi
 print(numpypi)
 f = pd.read_csv("./data/editedcsv.csv")
 f['CensusId']=f['CensusId'].apply(lambda x: '{0:0>5}'.format(x))
-
+foval='Walk'
 # f['Men']=f['Men']/f['TotalPop']
 # print(f.head(5))
 
-fig = px.choropleth(f, geojson=counties, locations='CensusId', color='Men',
+fig = px.choropleth(f, geojson=counties, locations='CensusId', color=foval,
                            color_continuous_scale="Viridis",
                            #range_color=(0, 12),
                            scope="usa",
-                           labels={'County':'Men'},
+                           labels={'County':foval},
                            hover_name="County",
-                           hover_data=["State","CensusId","Men"]
+                           hover_data=["State","CensusId",foval]
                           )
 #fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
