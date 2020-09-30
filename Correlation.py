@@ -3,7 +3,6 @@
 #Import Modules
 import numpy as np
 import pandas as pd
-from scipy.stats import pearsonr
 import seaborn as sn
 import matplotlib.pyplot as plt
 
@@ -18,11 +17,11 @@ f=f.drop(columns=['ID','CensusTract','State','County'])
 
 #Create Correlation Matrix
 corrMatrix=f.corr()
-#Create Array for just Income Correlation
-corrInc=corrMatrix.Income
+#Create Array for just Poverty Correlation
+corrPov=corrMatrix.Poverty
 
-#Print Income Correlation
-print(corrInc)
+#Print Poverty Correlation
+print(corrPov)
 
 #Write to csv
 corrMatrix.to_csv('./data/corrMatrix.csv')
